@@ -70,46 +70,51 @@ export default function EducationSection() {
                 </motion.div>
 
                 {/* Education Cards */}
-                <div className="space-y-16">
+                <div className="space-y-12">
                     {educationData.map((edu, index) => (
                         <motion.div
                             key={edu.id}
-                            initial={{ opacity: 0, y: 50 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.8, delay: index * 0.2 }}
+                            initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            transition={{ duration: 0.8, delay: 0.2 }}
                             viewport={{ once: true }}
-                            className="group"
+                            className={`group max-w-3xl ${index % 2 === 1 ? "ml-auto" : "mr-auto"}`}
                         >
-                            <div className="relative p-12 backdrop-blur-sm bg-zinc-900/40 rounded-3xl border-2 border-gold-400/30 hover:border-gold-400/50 transition-all duration-500 hover:bg-zinc-900/60 hover:shadow-2xl hover:shadow-gold-400/20">
+                            <div className="relative p-6 md:p-8 backdrop-blur-sm bg-zinc-900/40 rounded-3xl border-2 border-gold-400/30 hover:border-gold-400/50 transition-all duration-500 hover:bg-zinc-900/60 hover:shadow-2xl hover:shadow-gold-400/20">
 
                                 {/* Corner Decorations */}
-                                <div className="absolute top-0 left-0 w-24 h-24 border-t-2 border-l-2 border-gold-400/50 rounded-tl-3xl" />
-                                <div className="absolute bottom-0 right-0 w-24 h-24 border-b-2 border-r-2 border-gold-400/50 rounded-br-3xl" />
+                                <div className="absolute top-0 left-0 w-12 h-12 border-t-2 border-l-2 border-gold-400/50 rounded-tl-2xl" />
+                                <div className="absolute bottom-0 right-0 w-12 h-12 border-b-2 border-r-2 border-gold-400/50 rounded-br-2xl" />
 
-                                <div className="grid md:grid-cols-[1fr_auto] gap-8 items-start">
-                                    <div className="space-y-4">
-                                        <h3 className="text-3xl md:text-4xl font-serif text-gold-200 group-hover:text-gold-300 transition-colors">
-                                            {edu.title}
-                                        </h3>
-                                        <p className="text-xl text-gold-100 font-medium leading-relaxed">
-                                            {edu.subtitle}
-                                        </p>
-                                        <p className="text-gold-300 font-semibold text-lg">
-                                            {edu.institution}
-                                        </p>
+                                <div className="flex flex-col gap-4">
+                                    <div className="flex flex-col md:flex-row justify-between items-start gap-4">
+                                        <div className="space-y-1">
+                                            <h3 className="text-2xl md:text-3xl font-serif text-gold-200 group-hover:text-gold-300 transition-colors">
+                                                {edu.title}
+                                            </h3>
+                                            <p className="text-lg text-gold-100 font-medium leading-relaxed">
+                                                {edu.subtitle}
+                                            </p>
+                                            <p className="text-gold-300 font-semibold text-base">
+                                                {edu.institution}
+                                            </p>
+                                        </div>
+
+                                        <div className="md:text-right shrink-0">
+                                            <p className="text-gold-200 font-semibold text-base bg-gold-400/10 px-3 py-1 rounded-full border border-gold-400/20">
+                                                {edu.period}
+                                            </p>
+                                        </div>
                                     </div>
 
-                                    <div className="text-right space-y-3 md:min-w-[240px]">
-                                        <p className="text-gold-200 font-semibold text-lg">
-                                            {edu.period}
-                                        </p>
-                                        {edu.location && (
-                                            <p className="text-gold-300 text-base flex items-center justify-end gap-2">
+                                    {edu.location && (
+                                        <div className="flex justify-end mt-1">
+                                            <p className="text-gold-300/80 text-sm flex items-center gap-2 uppercase tracking-wider">
                                                 <span>📍</span>
                                                 <span>{edu.location}</span>
                                             </p>
-                                        )}
-                                    </div>
+                                        </div>
+                                    )}
                                 </div>
 
                                 {/* Hover Glow Effect */}

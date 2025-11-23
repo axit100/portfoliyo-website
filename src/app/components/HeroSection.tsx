@@ -42,11 +42,14 @@ export default function HeroSection() {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-                        className="text-gold-200 text-lg sm:text-xl max-w-lg mx-auto lg:mx-0 font-light leading-relaxed"
+                        className="text-gold-200 text-lg sm:text-xl max-w-lg mx-auto lg:mx-0 font-light leading-relaxed flex flex-col gap-4"
                     >
-                        Architecture Designer | Interior Designer | 3d Visualizer | Masters in Architecture
-                        <br />
-                        <span className="text-gold-400/80 text-base block mt-2">Greater Toronto Area, Canada</span>
+                        <span className="inline-block px-4 py-1 rounded-full border border-gold-400/30 bg-gold-400/10 text-gold-300 text-sm tracking-widest uppercase w-fit mx-auto lg:mx-0">
+                            5+ Years Experience
+                        </span>
+                        <span>
+                            Crafting sustainable, functional, and aesthetically profound spaces that tell a story.
+                        </span>
                     </motion.p>
 
                     <motion.div

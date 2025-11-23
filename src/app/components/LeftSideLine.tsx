@@ -39,7 +39,7 @@ export default function LeftSideLine() {
 
             {/* Active Section Indicator */}
             <div className="py-8 relative flex items-center justify-center">
-                <div className="absolute right-full mr-4 whitespace-nowrap origin-right -rotate-90">
+                <div className="absolute right-full mr-4 whitespace-nowrap origin-right -rotate-90 top-0">
                     <motion.span
                         key={activeSection}
                         initial={{ opacity: 0, y: 10 }}

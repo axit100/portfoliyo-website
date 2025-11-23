@@ -19,7 +19,7 @@ export default function IntroductionSection() {
         <section
             id="introduction"
             ref={containerRef}
-            className="relative min-h-screen py-40 px-4 sm:px-8 flex items-center justify-center overflow-hidden bg-zinc-950 border-t border-gold-900/30"
+            className="relative min-h-screen px-4 sm:px-8 flex items-center justify-center overflow-hidden bg-zinc-950 border-t border-gold-900/30"
         >
             {/* Parallax Background Grid */}
             <motion.div
