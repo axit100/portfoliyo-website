@@ -59,16 +59,18 @@ export default function HeroSection() {
                         className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
                     >
                         <a
-                            href="#projects"
-                            className="px-10 py-5 bg-gold-400 text-black font-medium text-sm tracking-widest uppercase hover:bg-gold-300 transition-colors duration-300"
+                            href="/cv/Yashvi_Trivedi_CV.pdf"
+                            download="Yashvi_Trivedi_CV.pdf"
+                            className="px-10 py-5 bg-gold-400 text-black font-medium text-sm tracking-widest uppercase hover:bg-gold-300 transition-colors duration-300 text-center"
                         >
-                            View Work
+                            Download CV
                         </a>
                         <a
-                            href="#contact"
-                            className="px-10 py-5 border border-gold-400/30 text-gold-100 font-medium text-sm tracking-widest uppercase hover:bg-gold-400/10 transition-colors duration-300"
+                            href="/cv/Yashvi_Trivedi_CV.pdf"
+                            download="Yashvi_Trivedi_Portfolio.pdf"
+                            className="px-10 py-5 border border-gold-400/30 text-gold-100 font-medium text-sm tracking-widest uppercase hover:bg-gold-400/10 transition-colors duration-300 text-center"
                         >
-                            Contact Me
+                            Download Portfolio
                         </a>
                     </motion.div>
                 </div>

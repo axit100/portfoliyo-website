@@ -32,7 +32,7 @@ export default function Home() {
             Design & Develop by <span className="text-gold-300 font-semibold">Axit Sompura</span>
           </p>
           <p className="text-gold-300/70 text-xs">
-            © {new Date().getFullYear()} Yashvi. All rights reserved.
+            © {new Date().getFullYear()} Yashvi Trivedi. All rights reserved.
           </p>
         </div>
       </footer>
