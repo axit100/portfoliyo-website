@@ -2,33 +2,7 @@
 
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
-
-const educationData = [
-    {
-        id: 1,
-        title: "Bridging Program",
-        subtitle: "Architecture Skills Enhancement Bridging Program",
-        institution: "Humber Polytechnic",
-        period: "Sep 2025 - Dec 2025",
-        location: "Toronto, Canada"
-    },
-    {
-        id: 2,
-        title: "Masters",
-        subtitle: "Masters in Housing Design, Architecture",
-        institution: "CEPT University",
-        period: "Aug 2022 - May 2024",
-        location: "Ahmedabad, India"
-    },
-    {
-        id: 3,
-        title: "Bachelor",
-        subtitle: "Bachelor of Architecture - BArch",
-        institution: "SAL SCHOOL OF ARCHITECTURE (356)",
-        period: "2016 - 2021",
-        location: "Ahmedabad, India"
-    }
-];
+import { education } from "../../config";
 
 export default function EducationSection() {
     const containerRef = useRef(null);
@@ -44,7 +18,7 @@ export default function EducationSection() {
         <section
             id="education"
             ref={containerRef}
-            className="relative min-h-screen py-32 px-4 flex items-center justify-center overflow-hidden bg-black"
+            className="relative min-h-screen py-32 px-4 flex items-center justify-center overflow-hidden bg-background"
         >
             {/* Parallax Background Grid */}
             <motion.div
@@ -62,7 +36,7 @@ export default function EducationSection() {
                     className="text-center mb-20"
                 >
                     <h2 className="text-5xl md:text-6xl font-serif text-gold-200 mb-6">
-                        Education
+                        {education.title}
                     </h2>
                     <p className="text-gold-300 text-xl">
                         Academic Foundation & Professional Growth
@@ -71,9 +45,9 @@ export default function EducationSection() {
 
                 {/* Education Cards */}
                 <div className="space-y-12">
-                    {educationData.map((edu, index) => (
+                    {education.items.map((edu, index) => (
                         <motion.div
-                            key={edu.id}
+                            key={index}
                             initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
                             whileInView={{ opacity: 1, x: 0 }}
                             transition={{ duration: 0.8, delay: 0.2 }}
@@ -90,10 +64,10 @@ export default function EducationSection() {
                                     <div className="flex flex-col md:flex-row justify-between items-start gap-4">
                                         <div className="space-y-1">
                                             <h3 className="text-2xl md:text-3xl font-serif text-gold-200 group-hover:text-gold-300 transition-colors">
-                                                {edu.title}
+                                                {edu.degree}
                                             </h3>
                                             <p className="text-lg text-gold-100 font-medium leading-relaxed">
-                                                {edu.subtitle}
+                                                {edu.description}
                                             </p>
                                             <p className="text-gold-300 font-semibold text-base">
                                                 {edu.institution}

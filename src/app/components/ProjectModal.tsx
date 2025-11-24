@@ -12,15 +12,18 @@ interface Project {
     title: string;
     location: string;
     description: string;
-    tools: string[];
-    estimation: string;
-    area: string;
-    direction: string;
+    features: string[];
+    details: {
+        client: string;
+        area: string;
+        duration: string;
+        role: string;
+    };
     images: string[];
 }
 
 interface ProjectModalProps {
-    project: Project | null;
+    project: any; // Using any to avoid strict type checking against the old interface during transition
     isOpen: boolean;
     onClose: () => void;
 }
@@ -107,7 +110,7 @@ export default function ProjectModal({ project, isOpen, onClose }: ProjectModalP
                                     {/* Remaining Images Grid */}
                                     {project.images.length > 1 && (
                                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                            {project.images.slice(1).map((img, index) => (
+                                            {project.images.slice(1).map((img: string, index: number) => (
                                                 <a
                                                     key={index}
                                                     href={img}
@@ -138,11 +141,11 @@ export default function ProjectModal({ project, isOpen, onClose }: ProjectModalP
                                             </p>
 
                                             <div className="space-y-3">
-                                                <h4 className="text-sm font-medium text-gold-400 uppercase tracking-widest">Tools Used</h4>
+                                                <h4 className="text-sm font-medium text-gold-400 uppercase tracking-widest">Key Features</h4>
                                                 <div className="flex flex-wrap gap-2">
-                                                    {project.tools.map((tool, i) => (
+                                                    {project.features && project.features.map((feature: string, i: number) => (
                                                         <span key={i} className="px-3 py-1 rounded-full border border-gold-400/20 bg-gold-400/5 text-gold-200 text-xs">
-                                                            {tool}
+                                                            {feature}
                                                         </span>
                                                     ))}
                                                 </div>
@@ -155,8 +158,8 @@ export default function ProjectModal({ project, isOpen, onClose }: ProjectModalP
                                                 <div className="flex items-start gap-3">
                                                     <Calendar className="w-5 h-5 text-gold-400 mt-1" />
                                                     <div>
-                                                        <p className="text-xs text-gold-400/60 uppercase tracking-wider">Estimation</p>
-                                                        <p className="text-gold-100">{project.estimation}</p>
+                                                        <p className="text-xs text-gold-400/60 uppercase tracking-wider">Duration</p>
+                                                        <p className="text-gold-100">{project.details?.duration || "N/A"}</p>
                                                     </div>
                                                 </div>
 
@@ -164,15 +167,15 @@ export default function ProjectModal({ project, isOpen, onClose }: ProjectModalP
                                                     <Ruler className="w-5 h-5 text-gold-400 mt-1" />
                                                     <div>
                                                         <p className="text-xs text-gold-400/60 uppercase tracking-wider">Total Area</p>
-                                                        <p className="text-gold-100">{project.area}</p>
+                                                        <p className="text-gold-100">{project.details?.area || "N/A"}</p>
                                                     </div>
                                                 </div>
 
                                                 <div className="flex items-start gap-3">
                                                     <Compass className="w-5 h-5 text-gold-400 mt-1" />
                                                     <div>
-                                                        <p className="text-xs text-gold-400/60 uppercase tracking-wider">Orientation</p>
-                                                        <p className="text-gold-100">{project.direction}</p>
+                                                        <p className="text-xs text-gold-400/60 uppercase tracking-wider">Role</p>
+                                                        <p className="text-gold-100">{project.details?.role || "N/A"}</p>
                                                     </div>
                                                 </div>
                                             </div>

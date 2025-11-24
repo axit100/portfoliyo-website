@@ -7,6 +7,7 @@ import { Navigation, Pagination, Autoplay, EffectCoverflow } from "swiper/module
 import { ArrowRight, ExternalLink } from "lucide-react";
 import Image from "next/image";
 import ProjectModal from "./ProjectModal";
+import { projects, features } from "../../config";
 
 // Import Swiper styles
 import "swiper/css";
@@ -14,56 +15,9 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/effect-coverflow";
 
-const projects = [
-    {
-        id: 1,
-        title: "Modern Urban Villa",
-        location: "Ahmedabad, India",
-        description: "A contemporary residential project focused on sustainable living and open spaces. The design integrates natural light and ventilation to create a harmonious living environment. The use of local materials and traditional craftsmanship adds a touch of cultural identity to the modern aesthetic.",
-        tools: ["AutoCAD", "Sketchup", "Lumion", "Photoshop"],
-        estimation: "12 Months",
-        area: "4,500 sq.ft",
-        direction: "East Facing",
-        images: ["/project-1.png", "/project-2.png", "/project-3.png"]
-    },
-    {
-        id: 2,
-        title: "Corporate Heights",
-        location: "Mumbai, India",
-        description: "A high-rise commercial complex designed to maximize workspace efficiency and employee well-being. Features include green terraces, collaborative zones, and state-of-the-art amenities. The facade design minimizes heat gain while maximizing views of the city skyline.",
-        tools: ["Revit", "3ds Max", "V-Ray", "Illustrator"],
-        estimation: "24 Months",
-        area: "25,000 sq.ft",
-        direction: "North Facing",
-        images: ["/project-2.png", "/project-3.png", "/project-4.png"]
-    },
-    {
-        id: 3,
-        title: "Serene Retreat",
-        location: "Udaipur, India",
-        description: "A luxury resort project nestled in the hills, offering a blend of traditional heritage and modern luxury. The layout respects the natural topography, ensuring minimal environmental impact. Private villas with pools and expansive courtyards offer guests a tranquil escape.",
-        tools: ["Rhino", "Grasshopper", "Lumion", "InDesign"],
-        estimation: "18 Months",
-        area: "15,000 sq.ft",
-        direction: "West Facing",
-        images: ["/project-3.png", "/project-4.png", "/project-1.png"]
-    },
-    {
-        id: 4,
-        title: "Tech Hub Interior",
-        location: "Bangalore, India",
-        description: "Interior design for a leading tech startup, fostering creativity and collaboration. The design features flexible workspaces, vibrant breakout areas, and ergonomic furniture. Biophilic design elements are integrated to enhance productivity and well-being.",
-        tools: ["Sketchup", "Enscape", "Photoshop", "AutoCAD"],
-        estimation: "6 Months",
-        area: "8,000 sq.ft",
-        direction: "South Facing",
-        images: ["/project-4.png", "/project-1.png", "/project-2.png"]
-    }
-];
-
 export default function ProjectsSection() {
     const containerRef = useRef(null);
-    const [selectedProject, setSelectedProject] = useState<typeof projects[0] | null>(null);
+    const [selectedProject, setSelectedProject] = useState<any>(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     const [swiperInstance, setSwiperInstance] = useState<any>(null);
@@ -76,7 +30,16 @@ export default function ProjectsSection() {
     const y = useTransform(scrollYProgress, [0, 1], [50, -50]);
     const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
 
-    const handleOpenModal = (project: typeof projects[0]) => {
+    const handleOpenModal = (project: any) => {
+        console.log('handleOpenModal called with project:', project);
+        console.log('Project ID:', project?.id, 'Project Title:', project?.title);
+
+        // Check if project modals are enabled
+        if (!features.showProjectModal) {
+            console.log('Project modals are disabled in config');
+            return;
+        }
+
         setSelectedProject(project);
         setIsModalOpen(true);
     };
@@ -85,7 +48,7 @@ export default function ProjectsSection() {
         <section
             id="projects"
             ref={containerRef}
-            className="relative min-h-screen py-32 px-4 flex items-center justify-center overflow-hidden bg-black"
+            className="relative min-h-screen py-32 px-4 flex items-center justify-center overflow-hidden bg-background"
         >
             {/* Parallax Background Grid */}
             <motion.div
@@ -102,7 +65,7 @@ export default function ProjectsSection() {
                         className="text-center md:text-left"
                     >
                         <h2 className="text-5xl md:text-6xl font-serif font-bold text-gold-200 mb-6">
-                            Selected Works
+                            {projects.title}
                         </h2>
                         <p className="text-gold-300 text-xl max-w-2xl font-light">
                             Curated architectural narratives and design explorations.
@@ -138,7 +101,7 @@ export default function ProjectsSection() {
                             stretch: 0,
                             depth: 100,
                             modifier: 2.5,
-                            slideShadows: true,
+                            slideShadows: false,
                         }}
                         autoplay={{
                             delay: 3000,
@@ -147,6 +110,13 @@ export default function ProjectsSection() {
                         }}
                         pagination={false}
                         navigation={false}
+                        slideToClickedSlide={true}
+                        preventClicks={false}
+                        preventClicksPropagation={false}
+                        touchStartPreventDefault={false}
+                        watchSlidesProgress={true}
+                        observer={true}
+                        observeParents={true}
                         modules={[EffectCoverflow, Pagination, Navigation, Autoplay]}
                         className="w-full py-12 !pb-16"
                         breakpoints={{
@@ -158,14 +128,17 @@ export default function ProjectsSection() {
                             },
                         }}
                     >
-                        {projects.map((project) => (
+                        {projects.items.map((project) => (
                             <SwiperSlide key={project.id} className="!w-[300px] sm:!w-[400px] md:!w-[450px]">
-                                <div className="group relative h-[500px] rounded-2xl overflow-hidden border border-gold-400/20 bg-zinc-900/80 backdrop-blur-sm transition-all duration-500 hover:border-gold-400/50 hover:shadow-2xl hover:shadow-gold-400/10">
+                                <div
+                                    onClick={() => handleOpenModal(project)}
+                                    className="group relative h-[500px] rounded-2xl overflow-hidden border border-gold-400/20 bg-zinc-900/80 backdrop-blur-sm transition-all duration-500 hover:border-gold-400/50 hover:shadow-2xl hover:shadow-gold-400/10 cursor-pointer"
+                                >
 
                                     {/* Image Container */}
                                     <div className="relative h-3/5 w-full overflow-hidden">
                                         <Image
-                                            src={project.images[0]}
+                                            src={project.image}
                                             alt={project.title}
                                             fill
                                             className="object-cover transition-transform duration-700 group-hover:scale-110"
@@ -175,7 +148,7 @@ export default function ProjectsSection() {
                                         {/* Overlay Content */}
                                         <div className="absolute top-4 right-4 bg-black/60 backdrop-blur-md px-3 py-1 rounded-full border border-gold-400/30">
                                             <span className="text-xs font-medium text-gold-300 uppercase tracking-wider">
-                                                {project.location.split(',')[1]}
+                                                {project.location.split(',')[1] || project.location}
                                             </span>
                                         </div>
                                     </div>
@@ -193,25 +166,22 @@ export default function ProjectsSection() {
 
                                         <div className="flex items-center justify-between mt-4 pt-4 border-t border-gold-400/10">
                                             <div className="flex gap-2">
-                                                {project.tools.slice(0, 2).map((tool, i) => (
+                                                {project.features.slice(0, 2).map((feature, i) => (
                                                     <span key={i} className="text-[10px] px-2 py-1 rounded bg-gold-400/5 text-gold-400/80 border border-gold-400/10">
-                                                        {tool}
+                                                        {feature}
                                                     </span>
                                                 ))}
-                                                {project.tools.length > 2 && (
+                                                {project.features.length > 2 && (
                                                     <span className="text-[10px] px-2 py-1 rounded bg-gold-400/5 text-gold-400/80 border border-gold-400/10">
-                                                        +{project.tools.length - 2}
+                                                        +{project.features.length - 2}
                                                     </span>
                                                 )}
                                             </div>
 
-                                            <button
-                                                onClick={() => handleOpenModal(project)}
-                                                className="flex items-center gap-2 text-gold-400 text-sm font-medium uppercase tracking-wider hover:text-white transition-colors group/btn"
-                                            >
+                                            <div className="flex items-center gap-2 text-gold-400 text-sm font-medium uppercase tracking-wider hover:text-white transition-colors group/btn pointer-events-none">
                                                 View More
                                                 <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover/btn:translate-x-1" />
-                                            </button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

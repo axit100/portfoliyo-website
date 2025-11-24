@@ -2,25 +2,7 @@
 
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
-
-const skillsData = [
-    {
-        category: "Design & Planning",
-        skills: ["Architecture", "Interior Design", "Space Planning", "Concept Development", "Design Development", "Sustainable Design"]
-    },
-    {
-        category: "Technical Skills",
-        skills: ["Construction Drawings", "Detailing", "Building Codes", "Materials & Finishes", "Project Documentation"]
-    },
-    {
-        category: "Software & Tools",
-        skills: ["Revit", "AutoCAD", "SketchUp", "Lumion", "Enscape", "Photoshop", "3D Visualization", "Rendering"]
-    },
-    {
-        category: "Project Management",
-        skills: ["Project Coordination", "Site Supervision", "Client Presentations", "Team Collaboration", "Communication", "Time Management"]
-    }
-];
+import { skills } from "../../config";
 
 export default function SkillsSection() {
     const containerRef = useRef(null);
@@ -36,7 +18,7 @@ export default function SkillsSection() {
         <section
             id="skills"
             ref={containerRef}
-            className="relative min-h-screen py-32 px-4 sm:px-8 flex items-center justify-center overflow-hidden bg-zinc-950"
+            className="relative min-h-screen py-32 px-4 sm:px-8 flex items-center justify-center overflow-hidden bg-background"
         >
             {/* Parallax Background Grid */}
             <motion.div
@@ -54,7 +36,7 @@ export default function SkillsSection() {
                     className="text-center mb-20"
                 >
                     <h2 className="text-4xl md:text-5xl font-serif text-gold-200 mb-4">
-                        Skills & Expertise
+                        {skills.title}
                     </h2>
                     <p className="text-gold-300 text-lg">
                         Core Competencies & Professional Tools
@@ -63,7 +45,7 @@ export default function SkillsSection() {
 
                 {/* Skills Grid - Creative Staggered Layout */}
                 <div className="grid md:grid-cols-2 gap-10">
-                    {skillsData.map((category, catIndex) => {
+                    {skills.categories.map((category, catIndex) => {
                         const offsetY = catIndex === 1 ? "md:translate-y-12" : catIndex === 3 ? "md:translate-y-8" : "";
 
                         return (
@@ -93,9 +75,9 @@ export default function SkillsSection() {
 
                                     {/* Skills List */}
                                     <div className="flex flex-wrap gap-3">
-                                        {category.skills.map((skill, index) => (
+                                        {category.items.map((skill, index) => (
                                             <motion.span
-                                                key={skill}
+                                                key={skill.name}
                                                 initial={{ opacity: 0, scale: 0.8 }}
                                                 whileInView={{ opacity: 1, scale: 1 }}
                                                 whileHover={{ scale: 1.1, y: -4 }}
@@ -103,7 +85,7 @@ export default function SkillsSection() {
                                                 viewport={{ once: true }}
                                                 className="px-4 py-2 bg-zinc-900/70 border border-gold-400/30 rounded-lg text-sm text-gold-200 hover:text-gold-100 hover:border-gold-400/50 hover:bg-zinc-900 hover:shadow-lg hover:shadow-gold-400/20 transition-all duration-200 cursor-default"
                                             >
-                                                {skill}
+                                                {skill.name}
                                             </motion.span>
                                         ))}
                                     </div>

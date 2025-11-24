@@ -1,29 +1,45 @@
 @import "tailwindcss";
 
 @theme {
-  --color-gold-50: #fdfcf7;
-  --color-gold-100: #f8f3e6;
-  --color-gold-200: #ead9a8;
-  --color-gold-300: #dfc177;
-  --color-gold-400: #d4af37;
-  --color-gold-500: #c19528;
-  --color-gold-600: #a07420;
-  --color-gold-700: #7f5a1c;
-  --color-gold-800: #5e4316;
-  --color-gold-900: #3d2b0e;
+  --color-gold-50: color-mix(in srgb, var(--primary) 5%, white);
+  --color-gold-100: var(--primary-light);
+  --color-gold-200: color-mix(in srgb, var(--primary) 40%, white);
+  --color-gold-300: color-mix(in srgb, var(--primary) 70%, white);
+  --color-gold-400: var(--primary);
+  --color-gold-500: color-mix(in srgb, var(--primary) 90%, black);
+  --color-gold-600: var(--primary-dark);
+  --color-gold-700: color-mix(in srgb, var(--primary) 60%, black);
+  --color-gold-800: color-mix(in srgb, var(--primary) 40%, black);
+  --color-gold-900: color-mix(in srgb, var(--primary) 20%, black);
+
+  --color-background: var(--background);
+  --color-background-alt: var(--background-alt);
 }
 
 :root {
-  --gold-50: #fdfcf7;
-  --gold-100: #f8f3e6;
-  --gold-200: #ead9a8;
-  --gold-300: #dfc177;
-  --gold-400: #d4af37;
-  --gold-500: #c19528;
-  --gold-600: #a07420;
-  --gold-700: #7f5a1c;
-  --gold-800: #5e4316;
-  --gold-900: #3d2b0e;
+  /* Default fallback values (Gold Theme) */
+  --primary: #D4AF37;
+  --primary-light: #F4E4B8;
+  --primary-dark: #B8960F;
+  --background: #000000;
+  --background-alt: #0a0a0a;
+  --text-primary: #ffffff;
+  --text-secondary: #b0b0b0;
+  --text-muted: #808080;
+  --accent: #D4AF37;
+  --border-color: rgba(212, 175, 55, 0.2);
+
+  /* Legacy variables mapped to new dynamic ones */
+  --gold-50: color-mix(in srgb, var(--primary) 5%, white);
+  --gold-100: var(--primary-light);
+  --gold-200: color-mix(in srgb, var(--primary) 40%, white);
+  --gold-300: color-mix(in srgb, var(--primary) 70%, white);
+  --gold-400: var(--primary);
+  --gold-500: color-mix(in srgb, var(--primary) 90%, black);
+  --gold-600: var(--primary-dark);
+  --gold-700: color-mix(in srgb, var(--primary) 60%, black);
+  --gold-800: color-mix(in srgb, var(--primary) 40%, black);
+  --gold-900: color-mix(in srgb, var(--primary) 20%, black);
 }
 
 /* Custom Scrollbar */

@@ -3,6 +3,7 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import Image from "next/image";
+import { introduction } from "../../config";
 
 export default function IntroductionSection() {
     const containerRef = useRef(null);
@@ -19,7 +20,7 @@ export default function IntroductionSection() {
         <section
             id="introduction"
             ref={containerRef}
-            className="relative min-h-screen px-4 sm:px-8 flex items-center justify-center overflow-hidden bg-zinc-950 border-t border-gold-900/30"
+            className="relative min-h-screen px-4 sm:px-8 flex items-center justify-center overflow-hidden bg-background border-t border-gold-900/30"
         >
             {/* Parallax Background Grid */}
             <motion.div
@@ -38,21 +39,17 @@ export default function IntroductionSection() {
                 >
                     <div className="space-y-4">
                         <h2 className="text-4xl md:text-6xl font-serif text-gold-100">
-                            Introduction
+                            {introduction.title}
                         </h2>
                         <div className="h-1 w-20 bg-gold-400 mx-auto lg:mx-0" />
                     </div>
 
                     <div className="space-y-10 text-lg text-gold-200 leading-relaxed font-light">
-                        <p className="backdrop-blur-md bg-zinc-900/80 p-10 rounded-2xl border border-gold-400/30 shadow-lg shadow-black/50 hover:border-gold-400/50 transition-all duration-300 hover:shadow-2xl hover:shadow-gold-400/10 hover:-translate-y-1">
-                            A passionate <span className="text-gold-300 font-medium">Architect & Interior Designer</span> with hands-on experience across residential, commercial, and institutional projects. I actively contribute to the complete design cycle—from concept development to execution.
-                        </p>
-                        <p className="backdrop-blur-md bg-zinc-900/80 p-10 rounded-2xl border border-gold-400/30 shadow-lg shadow-black/50 hover:border-gold-400/50 transition-all duration-300 hover:shadow-2xl hover:shadow-gold-400/10 hover:-translate-y-1">
-                            I specialize in creating detailed architectural drawings, interior layouts, and 3D visualizations using tools like <span className="text-gold-300 font-medium">Revit, AutoCAD, SketchUp</span>, and more.
-                        </p>
-                        <p className="backdrop-blur-md bg-zinc-900/80 p-10 rounded-2xl border border-gold-400/30 shadow-lg shadow-black/50 hover:border-gold-400/50 transition-all duration-300 hover:shadow-2xl hover:shadow-gold-400/10 hover:-translate-y-1">
-                            Driven by continuous growth, I am committed to contributing meaningfully to innovative, context-driven architectural and interior design projects in <span className="text-gold-300 font-medium">Canada</span> and beyond.
-                        </p>
+                        {introduction.paragraphs.map((paragraph, index) => (
+                            <p key={index} className="backdrop-blur-md bg-zinc-900/80 p-10 rounded-2xl border border-gold-400/30 shadow-lg shadow-black/50 hover:border-gold-400/50 transition-all duration-300 hover:shadow-2xl hover:shadow-gold-400/10 hover:-translate-y-1">
+                                {paragraph}
+                            </p>
+                        ))}
                     </div>
                 </motion.div>
 

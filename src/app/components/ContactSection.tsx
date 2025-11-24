@@ -2,6 +2,7 @@
 
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
+import { contactInfo, features } from "../../config";
 
 export default function ContactSection() {
     const containerRef = useRef(null);
@@ -17,7 +18,7 @@ export default function ContactSection() {
         <section
             id="contact"
             ref={containerRef}
-            className="relative min-h-[60vh] py-32 px-4 sm:px-8 flex items-center justify-center overflow-hidden bg-zinc-950 border-t border-gold-900/30"
+            className="relative min-h-[60vh] py-32 px-4 sm:px-8 flex items-center justify-center overflow-hidden bg-background border-t border-gold-900/30"
         >
             {/* Parallax Background Grid */}
             <motion.div
@@ -33,10 +34,10 @@ export default function ContactSection() {
                     className="space-y-6"
                 >
                     <h2 className="text-4xl md:text-5xl font-serif font-bold text-gold-200">
-                        Get In Touch
+                        {contactInfo.title}
                     </h2>
                     <p className="text-gold-300 text-xl">
-                        I'm currently open to new opportunities and collaborations.
+                        {contactInfo.subtitle}
                     </p>
                 </motion.div>
 
@@ -49,29 +50,31 @@ export default function ContactSection() {
                 >
                     <div className="space-y-2 group">
                         <h3 className="text-gold-400 font-serif text-lg">Email</h3>
-                        <a href="mailto:yashvitrivedi2908@gmail.com" className="block text-gold-100 hover:text-gold-300 transition-colors">
-                            yashvitrivedi2908@gmail.com
+                        <a href={`mailto:${contactInfo.email}`} className="block text-gold-100 hover:text-gold-300 transition-colors">
+                            {contactInfo.email}
                         </a>
                     </div>
 
                     <div className="space-y-2 group">
                         <h3 className="text-gold-400 font-serif text-lg">Phone / WhatsApp</h3>
-                        <a href="tel:+15199774751" className="block text-gold-100 hover:text-gold-300 transition-colors">
-                            +1 519-977-4751
+                        <a href={`tel:${contactInfo.phone}`} className="block text-gold-100 hover:text-gold-300 transition-colors">
+                            {contactInfo.phone}
                         </a>
                     </div>
 
-                    <div className="space-y-2 group">
-                        <h3 className="text-gold-400 font-serif text-lg">LinkedIn</h3>
-                        <a
-                            href="https://linkedin.com/in/yashvitrivedi"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="block text-gold-100 hover:text-gold-300 transition-colors"
-                        >
-                            linkedin.com/in/yashvitrivedi
-                        </a>
-                    </div>
+                    {features.showSocialLinks && (
+                        <div className="space-y-2 group">
+                            <h3 className="text-gold-400 font-serif text-lg">LinkedIn</h3>
+                            <a
+                                href={contactInfo.social.linkedin}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="block text-gold-100 hover:text-gold-300 transition-colors"
+                            >
+                                {contactInfo.social.linkedin.replace('https://', '')}
+                            </a>
+                        </div>
+                    )}
                 </motion.div>
             </div>
         </section>
