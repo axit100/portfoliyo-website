@@ -252,22 +252,29 @@ export default function ProjectsSection() {
 
                                             {/* Floating Particles Effect */}
                                             <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                                                {[...Array(6)].map((_, i) => (
+                                                {[
+                                                    { left: 15, top: 20, delay: 0 },
+                                                    { left: 45, top: 60, delay: 0.5 },
+                                                    { left: 75, top: 35, delay: 1 },
+                                                    { left: 30, top: 80, delay: 1.5 },
+                                                    { left: 85, top: 15, delay: 0.8 },
+                                                    { left: 60, top: 50, delay: 1.2 }
+                                                ].map((particle, i) => (
                                                     <motion.div
                                                         key={i}
                                                         className="absolute w-1 h-1 bg-gold-400/40 rounded-full"
                                                         style={{
-                                                            left: `${Math.random() * 100}%`,
-                                                            top: `${Math.random() * 100}%`,
+                                                            left: `${particle.left}%`,
+                                                            top: `${particle.top}%`,
                                                         }}
                                                         animate={{
                                                             y: [0, -20, 0],
                                                             opacity: [0, 1, 0],
                                                         }}
                                                         transition={{
-                                                            duration: 2 + Math.random() * 2,
+                                                            duration: 3,
                                                             repeat: Infinity,
-                                                            delay: Math.random() * 2,
+                                                            delay: particle.delay,
                                                         }}
                                                     />
                                                 ))}
