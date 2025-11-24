@@ -202,7 +202,7 @@ export const projects = {
     items: [
         {
             id: 1,
-            title: "Modern Residential Complex",
+            title: "Modern Residential Complex 1",
             category: "Residential",
             location: "Toronto, Canada",
             year: "2023",
@@ -229,7 +229,7 @@ export const projects = {
         },
         {
             id: 2,
-            title: "This is a Project for Residential",
+            title: "This is a Project for Residential 2",
             category: "Residential",
             location: "Toronto, Canada",
             year: "2023",
@@ -256,7 +256,7 @@ export const projects = {
         },
         {
             id: 3,
-            title: "Commercial Office Tower",
+            title: "Commercial Office Tower 3",
             category: "Commercial",
             location: "Vancouver, Canada",
             year: "2022",
@@ -283,7 +283,7 @@ export const projects = {
         },
         {
             id: 4,
-            title: "Cultural Center & Museum",
+            title: "Cultural Center & Museum 4",
             category: "Cultural",
             location: "Montreal, Canada",
             year: "2021",
@@ -310,7 +310,7 @@ export const projects = {
         },
         {
             id: 5,
-            title: "Luxury Resort & Spa",
+            title: "Luxury Resort & Spa 5",
             category: "Hospitality",
             location: "Banff, Canada",
             year: "2020",
